@@ -48,6 +48,8 @@
 {{ $XMPP_RECORDER_DOMAIN := .Env.XMPP_RECORDER_DOMAIN -}}
 {{ $DISABLE_DEEP_LINKING  := .Env.DISABLE_DEEP_LINKING | default "false" | toBool -}}
 
+config.lalalala = 123;
+ 
 // Video configuration.
 //
 
