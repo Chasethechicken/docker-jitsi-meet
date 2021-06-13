@@ -23,6 +23,15 @@
 {{ $RESOLUTION_MIN := .Env.RESOLUTION_MIN | default "180" -}}
 {{ $RESOLUTION_WIDTH := .Env.RESOLUTION_WIDTH | default "1280" -}}
 {{ $RESOLUTION_WIDTH_MIN := .Env.RESOLUTION_WIDTH_MIN | default "320" -}}
+{{ $DISABLE_INVITE_FUNCTIONS := .Env.DISABLE_INVITE_FUNCTIONS | default "false" | toBool -}}
+{{ $MIN_PARTICIPANTS := .Env.MIN_PARTICIPANTS | default 1 -}}
+{{ $DISABLE_THIRD_PARTY_REQUESTS := .Env.DISABLE_THIRD_PARTY_REQUESTS | default "false" | toBool -}}
+{{ $ENABLE_DISPLAY_NAME_IN_STATS := .Env.ENABLE_DISPLAY_NAME_IN_STATS | default "true" | toBool -}}
+{{ $ENABLE_EMAIL_IN_STATS := .Env.ENABLE_EMAIL_IN_STATS | default "true" | toBool -}}
+{{ $ENABLE_INSECURE_ROOM_NAME_WARNING := .Env.ENABLE_INSECURE_ROOM_NAME_WARNING | default "true" | toBool -}}
+{{ $DISABLE_REMOTE_MUTE := .Env.DISABLE_REMOTE_MUTE | default "false" | toBool -}}
+{{ $CHANNEL_LAST_N := .Env.CHANNEL_LAST_N | default 4 -}}
+{{ $ENABLE_LAYER_SUSPENSION := .Env.ENABLE_LAYER_SUSPENSION | default "false" | toBool -}}
 {{ $START_AUDIO_ONLY := .Env.START_AUDIO_ONLY | default "false" | toBool -}}
 {{ $START_AUDIO_MUTED := .Env.START_AUDIO_MUTED | default 10 -}}
 {{ $START_WITH_AUDIO_MUTED := .Env.START_WITH_AUDIO_MUTED | default "false" | toBool -}}
@@ -186,6 +195,9 @@ config.callStatsSecret = '{{ .Env.CALLSTATS_SECRET }}';
 // by callstats as repoted remote id.
 config.enableStatsID = {{ $ENABLE_STATS_ID }};
 
+config.enableDisplayNameInStats = {{ $ENABLE_DISPLAY_NAME_IN_STATS }}:
+config.enableEmailInStats = {{ $ENABLE_EMAIL_IN_STATS }}:
+
 
 // Dial in/out services.
 //
@@ -259,6 +271,10 @@ config.requireDisplayName = {{ $ENABLE_REQUIRE_DISPLAY_NAME }};
 config.chromeExtensionBanner = {{ .Env.CHROME_EXTENSION_BANNER_JSON }};
 {{ end -}}
 
+config.disableInviteFunctions = {{ $DISABLE_INVITE_FUNCTIONS }};
+ 
+config.disableThirdPartyRequests = {{ $DISABLE_THIRD_PARTY_REQUESTS }};
+
 
 // Advanced.
 //
@@ -284,6 +300,16 @@ config.dynamicBrandingUrl = '{{ .Env.DYNAMIC_BRANDING_URL }}';
 // Authenticate using external service or just focus external auth window if there is one already.
 config.tokenAuthUrl = '{{ .Env.TOKEN_AUTH_URL }}';
 {{ end -}}
+ 
+config.minParticipants = {{ $MIN_PARTICIPANTS }};
+ 
+config.enableInsecureRoomNameWarning = {{ $ENABLE_INSECURE_ROOM_NAME_WARNING }};
+ 
+config.disableRemoteMute = {{ $DISABLE_REMOTE_MUTE }};
+
+config.channelLastN = {{ $CHANNEL_LAST_N }};
+
+config.enableLayerSuspension = {{ $ENABLE_LAYER_SUSPENSION }};
 
 
 // Deployment information.
